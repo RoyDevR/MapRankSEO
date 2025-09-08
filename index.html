@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MapRank SEO - Get Found on Google Maps & Search</title>
+    <style>
+        /* === BASE STYLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 0.8em;
+            color: #1a365d; /* Navy Blue */
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 1.2em;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #34a853; /* Google Green */
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2d8d47;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 168, 83, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #4285f4; /* Google Blue */
+        }
+
+        .btn-secondary:hover {
+            background-color: #3b78e7;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* === HEADER === */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a365d;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #34a853;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #34a853;
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #e6f7ff 100%);
+            padding: 160px 0 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #4a5568;
+        }
+
+        /* === SERVICES SECTION === */
+        .services {
+            background-color: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: #4285f4;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: #34a853;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        /* === ABOUT SECTION === */
+        .about {
+            background: linear-gradient(135deg, #f6f9fc 0%, #e6f7ff 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            padding-right: 20px;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonials {
+            background-color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .client-name {
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        /* === CONTACT === */
+        .contact {
+            background: linear-gradient(135deg, #ffffff 0%, #f6f9fc 100%);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        /* Form Messages */
+        #form-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #34a853;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: #1a365d;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .footer-links li {
+            margin: 0 15px;
+        }
+
+        .footer-links a {
+            color: #e6f7ff;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #34a853;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-text {
+                padding-right: 0;
+            }
+
+            .nav-links {
+                display: none; /* For simplicity - would add mobile menu in real site */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Map<span>Rank</span> SEO</a>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Get More Customers from Google Search & Maps</h1>
+            <p>We specialize in optimizing your Google Business Profile to attract more local customers, increase phone calls, and drive more traffic to your door.</p>
+            <a href="#contact" class="btn">Get a Free Audit</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="text-center">Our Services</h2>
+            <p class="text-center">We offer tailored packages to help your business get found online.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📍</div>
+                    <h3>Essential GBP Management</h3>
+                    <p>Perfect for businesses getting started with Google Business Profile.</p>
+                    <ul>
+                        <li>Complete Profile Optimization</li>
+                        <li>Monthly Performance Reporting</li>
+                        <li>Review Management & Response</li>
+                        <li>Quarterly Photo Updates</li>
+                    </ul>
+                    <div class="price">2700</div>
+                    <a href="#contact" class="btn">Get Started</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Growth Plan</h3>
+                    <p>For businesses serious about dominating local search.</p>
+                    <ul>
+                        <li>Everything in Essential</li>
+                        <li>Weekly Google Posts (Offers/Events)</li>
+                        <li>Keyword Ranking Tracking (5 keywords)</li>
+                        <li>Competitor Analysis Report</li>
+                    </ul>
+                    <div class="price">₹3500</div>
+                    <a href="#contact" class="btn">Get Started</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>One-Time Optimization</h3>
+                    <p>Get your profile set up perfectly, then manage it yourself.</p>
+                    <ul>
+                        <li>Comprehensive GBP Audit</li>
+                        <li>Full Optimization Setup</li>
+                        <li>Keyword Strategy Implementation</li>
+                        <li>1-Hour Training Session</li>
+                    </ul>
+                    <div class="price">₹5760 one-time</div>
+                    <a href="#contact" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About MapRank SEO</h2>
+                    <p>Hi, I'm Rajan, the founder of MapRank SEO. I started this business after seeing too many amazing local businesses struggle because they were invisible online.</p>
+                    <p>With over 3 years of experience in local SEO and Google Business Profile optimization, I've helped businesses increase their visibility, attract more customers, and grow their revenue.</p>
+                    <p>My mission is simple: to help great local businesses get found by the customers who are searching for them.</p>
+                    <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+                </div>
+                <div>
+                    <!-- Placeholder for profile image -->
+                    <div class="profile-img" style="height: 400px; background: #e6f7ff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #4285f4;">
+                        [Profile Photo of Rajan Here]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="results" class="testimonials">
+        <div class="container">
+            <h2 class="text-center">Real Results</h2>
+            <p class="text-center">See what our clients have to say about our services.</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"MapRank SEO completely transformed our online presence. We went from 2-3 calls a week to 10-15 calls a day! Worth every penny."</p>
+                    <p class="client-name">— Sarah Chen, Owner of Taste of India Restaurant</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Rajan optimized our GBP and within a month we were on the first page of Google. Our bookings have increased by 150%."</p>
+                    <p class="client-name">— Michael Rodriguez, StyleCuts Salon</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The detailed monthly reports show exactly how our visibility is improving. Finally understand our ROI from digital marketing!"</p>
+                    <p class="client-name">— James Wilson, City Plumbing Co.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="text-center">Get Your Free Audit</h2>
+            <p class="text-center">Contact us today for a free analysis of your Google Business Profile.</p>
+            
+            <div class="contact-form">
+                <!-- CHANGE THIS: Replace 'rajanroy.dev@gmail.com' with YOUR email address -->
+                <form action="https://formsubmit.co/rajanroy.dev@gmail.com" method="POST" id="contactForm">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New lead from MapRank SEO website!">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                    
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="business">Business Name</label>
+                        <input type="text" id="business" name="business" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">How can we help you?</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                    
+                    <!-- Loading Spinner -->
+                    <div class="spinner" id="form-spinner"></div>
+                </form>
+                
+                <!-- Form Messages -->
+                <div id="form-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>MapRank SEO</h3>
+                <p>Helping local businesses thrive online.</p>
+                
+                <ul class="footer-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                
+                <p>© 2023 MapRank SEO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading spinner
+            const spinner = document.getElementById('form-spinner');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const formMessage = document.getElementById('form-message');
+            
+            spinner.style.display = 'block';
+            submitBtn.disabled = true;
+            formMessage.style.display = 'none';
+            
+            // Capture form data
+            const formData = new FormData(this);
+            
+            // Send form data to FormSubmit
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    formMessage.textContent = 'Thank you! Your message has been sent. We will contact you shortly.';
+                    formMessage.className = 'success';
+                    formMessage.style.display = 'block';
+                    
+                    // Reset form
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                // Show error message
+                formMessage.textContent = 'Sorry, there was a problem sending your message. Please try again or email us directly.';
+                formMessage.className = 'error';
+                formMessage.style.display = 'block';
+            })
+            .finally(() => {
+                // Hide spinner and re-enable button
+                spinner.style.display = 'none';
+                submitBtn.disabled = false;
+                
+                // Scroll to message
+                formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
