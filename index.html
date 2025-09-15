@@ -519,29 +519,6 @@
                 font-size: 20px;
             }
         }
-
-        /* High-resolution displays */
-        @media (min-resolution: 192dpi) {
-            .hero {
-                background: linear-gradient(135deg, #ffffff 0%, #e6f7ff 100%);
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            .btn, .hamburger, .contact-form {
-                display: none !important;
-            }
-            
-            body {
-                color: black;
-                background: white;
-            }
-            
-            .hero, section {
-                padding: 20px 0;
-            }
-        }
     </style>
 </head>
 <body>
@@ -592,7 +569,7 @@
                         <li>Review Management & Response</li>
                         <li>Quarterly Photo Updates</li>
                     </ul>
-                    <div class="price">₹999/mo</div>
+                    <div class="price">$199/mo</div>
                     <a href="#contact" class="btn">Get Started</a>
                 </div>
                 
@@ -606,7 +583,7 @@
                         <li>Keyword Ranking Tracking (5 keywords)</li>
                         <li>Competitor Analysis Report</li>
                     </ul>
-                    <div class="price">₹2999/mo</div>
+                    <div class="price">$399/mo</div>
                     <a href="#contact" class="btn">Get Started</a>
                 </div>
                 
@@ -620,7 +597,7 @@
                         <li>Keyword Strategy Implementation</li>
                         <li>1-Hour Training Session</li>
                     </ul>
-                    <div class="price">₹5999 one-time</div>
+                    <div class="price">$499 one-time</div>
                     <a href="#contact" class="btn">Get Started</a>
                 </div>
             </div>
@@ -640,9 +617,7 @@
                 </div>
                 <div>
                     <div class="profile-img" style="height: 400px; background: #e6f7ff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #4285f4;">
-                        <img src="./Img/img.jpg" alt="Cinque Terre" width="100%" height="auto">
-                        
-<!--                         <i class="fas fa-user-tie" style="font-size: 3rem;"></i> -->
+                        <i class="fas fa-user-tie" style="font-size: 3rem;"></i>
                     </div>
                 </div>
             </div>
@@ -681,25 +656,29 @@
             <p class="text-center">Contact us today for a free analysis of your Google Business Profile.</p>
             
             <div class="contact-form">
-                <!-- CHANGE THIS: Replace 'your-email@domain.com' with YOUR email address -->
-                <form action="https://formsubmit.co/5b4f341ae21ac64fb537e3233d113a01" method="POST" id="contactForm">
-                    <!-- FormSubmit Configuration -->
-                    <input type="hidden" name="_subject" value="New lead from MapRank SEO website!">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <!-- Web3Forms Configuration -->
+                <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+                    
+                    <!-- IMPORTANT: Replace with your Web3Forms Access Key -->
+                    <input type="hidden" name="access_key" value="4ca72246-5d37-4987-9c70-0ed32dc38cbe">
+                    
+                    <!-- Form Configuration -->
+                    <input type="hidden" name="subject" value="New Lead from MapRank SEO Website">
+                    <input type="hidden" name="from_name" value="MapRank SEO Website">
+                    <input type="checkbox" name="botcheck" id="" style="display: none;">
                     
                     <div class="form-group">
-                        <label for="name">Your Name</label>
+                        <label for="name">Your Name *</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="business">Business Name</label>
+                        <label for="business">Business Name *</label>
                         <input type="text" id="business" name="business" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Email Address</label>
+                        <label for="email">Email Address *</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     
@@ -709,7 +688,18 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="message">How can we help you?</label>
+                        <label for="service">Interested Service</label>
+                        <select id="service" name="service">
+                            <option value="">Select a service</option>
+                            <option value="Essential GBP Management">Essential GBP Management ($199/mo)</option>
+                            <option value="Growth Plan">Growth Plan ($399/mo)</option>
+                            <option value="One-Time Optimization">One-Time Optimization ($499)</option>
+                            <option value="Not Sure">Not Sure - Need Advice</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">How can we help you? *</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
                     
@@ -739,7 +729,7 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 
-                <p>© 2025 MapRank SEO. All rights reserved.</p>
+                <p>© 2023 MapRank SEO. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -748,7 +738,6 @@
         // Mobile Navigation
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        const body = document.body;
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
@@ -765,47 +754,58 @@
             });
         });
 
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // Form submission handling for Web3Forms
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const spinner = document.getElementById('form-spinner');
             const submitBtn = this.querySelector('button[type="submit"]');
             const formMessage = document.getElementById('form-message');
             
+            // Show loading state
             spinner.style.display = 'block';
             submitBtn.disabled = true;
             formMessage.style.display = 'none';
             
+            // Get form data
             const formData = new FormData(this);
             
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    formMessage.textContent = 'Thank you! Your message has been sent. We will contact you shortly.';
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Success message
+                    formMessage.textContent = 'Thank you! Your message has been sent successfully. We will contact you shortly.';
                     formMessage.className = 'success';
                     formMessage.style.display = 'block';
+                    
+                    // Reset form
                     this.reset();
                 } else {
-                    throw new Error('Form submission failed');
+                    throw new Error(result.message || 'Form submission failed');
                 }
-            })
-            .catch(error => {
+            } catch (error) {
+                // Error message
                 formMessage.textContent = 'Sorry, there was a problem sending your message. Please try again or email us directly.';
                 formMessage.className = 'error';
                 formMessage.style.display = 'block';
-            })
-            .finally(() => {
+                console.error('Form submission error:', error);
+            } finally {
+                // Hide spinner and re-enable button
                 spinner.style.display = 'none';
                 submitBtn.disabled = false;
+                
+                // Scroll to message
                 formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
+            }
         });
 
         // Smooth scrolling for navigation links
